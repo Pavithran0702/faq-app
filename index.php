@@ -31,13 +31,30 @@ $faqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </span>
                     </span>
 
-                    <button>
+                    <button onclick="likeFaq(<?= $faq['id'] ?>)">
                         👍 Like
                     </button>
                 </div>
             </div>
         <?php endforeach; ?>
     </div>
+
+    <script>
+        function likeFaq(id) {
+            fetch("api.php?action=like_faq&id=" + id)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById("likes-" + id).innerText = data.likes_count;
+                    } else {
+                        alert(data.message);
+                    }
+                })
+                .catch(error => {
+                    alert("Something went wrong.");
+                });
+        }
+    </script>
 
 </body>
 
