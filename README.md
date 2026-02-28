@@ -1,4 +1,4 @@
-# FAQ Like Application
+# FAQ Application
 
 ## Overview
 
